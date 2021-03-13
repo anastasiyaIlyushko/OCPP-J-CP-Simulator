@@ -229,7 +229,7 @@
 
 	var tz;
 	var idTag = $('#idTag').val();
-	var connectorId = $('#connectorId').val();
+	var connectorId = parseInt($('#connectorId').val());
 	var meterStart = $('#meterStart').val();
 	var reservationId = $('#reservationId').val();
 	var meterStop = $('#meterStop').val();
@@ -247,7 +247,7 @@
 	
 	function onAction(){
 		idTag = $('#idTag').val();
-		connectorId = $('#connectorId').val();
+		connectorId = parseInt($('#connectorId').val());
 		meterStart = $('#meterStart').val();
 		reservationId = $('#reservationId').val();
 		meterStop = $('#meterStop').val();
@@ -614,10 +614,10 @@
         logMsg("Connector status changed to: " + connector_locked);
         $('#yellow').show();
 		if ((transaction_id === false)&&($('#TransToStp').val()!='')){
-			ssid = $('#TransToStp').val();
+			ssid = parseInt($('#TransToStp').val());
 		}
         var stpT = JSON.stringify([2, id, "StopTransaction",{
-            "transactionId": parseInt(ssid),
+            "transactionId": parseInt($('#TransToStp').val()),
             "idTag": idTag,
             "timestamp": formatDate(new Date()),
             "meterStop": 20
@@ -757,7 +757,7 @@
               "timestamp": new Date(),
             },
         ],
-        "transactionId": Number.parseInt($('#meterValueTransaction').val()),
+        "transactionId": parseInt($('#TransToStp').val()),
         }]);
         _websocket.send(MV);
 
